@@ -3,9 +3,6 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
 import Moment from 'react-moment';
 
 class DishDetail extends Component {
-	constructor(props) {
-		super(props);
-	}	
 
 	renderComments(comments) {
 		if (comments != null) {
@@ -41,16 +38,22 @@ class DishDetail extends Component {
 
 	render() {
 		const dish = this.props.dish;
-		return (
-			<div className="row">
-				<div className="col-12 col-md-5 m-1">
-		      {this.renderDish(dish)}
+		if (dish != null) {
+			return (
+				<div className="container">
+					<div className="row">
+						<div className="col-12 col-md-5 m-1">
+				      {this.renderDish(dish)}
+						</div>
+						<div className="col-12 col-md-5 m-1">
+							{this.renderComments(dish.comments)}
+						</div>
+					</div>
 				</div>
-				<div className="col-12 col-md-5 m-1">
-					{this.renderComments(dish.comments)}
-				</div>
-			</div>
-    );
+	    );
+		}
+		else
+			return <div></div>
 	}
 }
 
